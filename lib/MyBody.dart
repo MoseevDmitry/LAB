@@ -10,7 +10,7 @@ import 'TextL.dart';
 class MyBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Row (
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [Star(), ColorCont(), TextL(), Earth(), TextR(), ColorCont(), Star()],
     );
