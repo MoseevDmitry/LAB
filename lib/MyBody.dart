@@ -7,7 +7,7 @@ import 'Star.dart';
 import 'TextR.dart';
 import 'TextL.dart';
 
-class MyBody extends StatelessWidget {
+/*class MyBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row (
@@ -15,4 +15,4 @@ class MyBody extends StatelessWidget {
       children: [Star(), ColorCont(), TextL(), Earth(), TextR(), ColorCont(), Star()],
     );
   }
-}
+}*/
