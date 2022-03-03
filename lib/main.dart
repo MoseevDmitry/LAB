@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView(
           children: [
             ElevatedButton(
-                child: Text("Текст: $buttonValue", style: TextStyle(fontSize: 22)),
+                child: Text("Номер: $buttonValue", style: TextStyle(fontSize: 40, fontFamily: 'Doom', color: Colors.deepOrangeAccent)),
                 onPressed:(){ setState(() {
                   buttonValue = buttonValue + 1;
 
