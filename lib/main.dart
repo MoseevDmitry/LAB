@@ -4,65 +4,63 @@ import 'package:flutter/material.dart';
 import 'MyBody.dart';
 //import 'MyBody1.dart';
 
+List<String> _items = [];
+
 void main() {
   runApp(Myla());
 }
 
-
-
 class Myla extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-  return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              "Добрый вечер",
-              style: TextStyle(fontSize: 35),
-            ),
-          ),
-          body: Column(
-            children: [MyButton(), MyButton(), MyButton()],
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-          )));
-}
-}
-
-class MyButton extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MyButtonState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Добрый вечер',
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: const Color.fromRGBO(43, 24, 45, 11),),
+          scaffoldBackgroundColor: const Color.fromRGBO(41, 40, 59, 21),
+        ),
+        home: MyHomePage()
+    );
+  }
 }
 
-class _MyButtonState extends State<MyButton> {
-  int value = 0;
-  double fontSize = 22;
-  Color color = Colors.blue;
-  Color buttonFontColor = Colors.white;
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key}) : super(key: key);
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int buttonValue = 0;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        child: Text(
-          value <= 20 ? "Значение: $value" : "Больше 20",
-          style: TextStyle(fontSize: fontSize, color: buttonFontColor),
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title:  Image(
+            image: AssetImage('assets/icons/Earth.png'),
+            width: 80,
+          ),
         ),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(color),
-        ),
-        onPressed: () {
-          setState(() {
-            value = value + 1;
-            if (value > 10) {
-              fontSize = 50;
-            }
-            if (value > 20) {
-              color = Colors.red;
-            }
-            if (value > 5) {
-              buttonFontColor = Colors.yellow;
-            }
-          });
-        });
+        body: ListView(
+          children: [
+            ElevatedButton(
+                child: Text("Текст: $buttonValue", style: TextStyle(fontSize: 22)),
+                onPressed:(){ setState(() {
+                  buttonValue = buttonValue + 1;
+
+                });} ),
+            for ( var i = 0; i < 20; i++)(
+                Card(
+                  child: ListTile(
+                    title: Text("$i лист"),
+                  ),)
+            ),
+          ],
+          shrinkWrap: true,
+        )
+    );
   }
 }
