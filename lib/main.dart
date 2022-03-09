@@ -14,16 +14,15 @@ class Myla extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              backgroundColor: Colors.green,
               title: const Text(
                 "Добрый вечер",
-                style: TextStyle(fontSize: 32, fontFamily: 'Doom', color: Colors.red),
+                style: TextStyle(fontSize: 32, fontFamily: 'Doom', color: Colors.black87),
                 textAlign: TextAlign.center,
               ),
+
             ),
             body: MyBody()));
   }
@@ -55,67 +54,79 @@ class _MyBodyState extends State<MyBody> {
     return ListView.builder(itemBuilder: (context, index) {
       var item = items[index];
       if (item is MessageItem) {
-        return Card(
-          shape: RoundedRectangleBorder(
-              side: BorderSide( color: Colors.deepPurple, width: 7),
-              borderRadius: BorderRadius.all(Radius.circular(5))
-          ),
-          child: Text(
-            item.message,
-            style: TextStyle(fontSize: 35, fontFamily: 'Doom', color: Colors.black87),
-            textAlign: TextAlign.center,
-          ),
-        );
-      } else if (item is ColorItem) {
-        return SizedBox(width: 20,
-            height: 60, child:
-            Card(
-              shape: RoundedRectangleBorder(
-                  side: BorderSide( color: Colors.black87, width: 7),
-                  borderRadius: BorderRadius.all(Radius.circular(5))
-              ),
-              child: Text(
-                item.color,
-                style: TextStyle(color: Colors.grey, fontSize: 40),
-                textAlign: TextAlign.center,
-              ),
-              color: Colors.teal,
-            ));
-      } else
-      if (item is HeadItem)
-      {
-        return Card(
-          shape: RoundedRectangleBorder(
-              side: BorderSide( color: Colors.indigo, width: 7),
-              borderRadius: BorderRadius.all(Radius.circular(5))
-          ),
-          child: Text(
-            item.title,
-            style: TextStyle(fontSize: 40, color: Colors.redAccent),
-            textAlign: TextAlign.center,
-          ),
-          color: Colors.greenAccent,
-        );
+        return MessageContainer(item.message);
+      } else if (item is ColorItem){
+        return ColorContainer(item.color);
+      } else if (item is HeadItem) {
+        return HeadContainer(item.title);
       }
       return SizedBox();
     });
   }
 }
 
+
+class ColorContainer extends StatelessWidget{
+  @override
+  String color;
+  ColorContainer(this.color);
+  Widget build(BuildContext context) {
+    return Card(
+      child: Text(
+        color,
+        style: TextStyle(color: Colors.red, fontSize: 50, ),
+        textAlign: TextAlign.center,
+      ),
+      color: Colors.blueGrey,
+    );  }
+
+}
+
+
+class MessageContainer extends StatelessWidget{
+  @override
+  String message;
+  MessageContainer(this.message);
+  Widget build(BuildContext context) {
+    return Card(
+      child: Text(
+        message,
+        style: TextStyle(fontSize: 25, color: Colors.green),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+}
+
+
+class HeadContainer extends StatelessWidget{
+  @override
+  String title;
+  HeadContainer(this.title);
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(title,
+        style: TextStyle(fontSize: 46, fontFamily: 'Doom'),
+        textAlign: TextAlign.center,
+      ),
+      color: Colors.blue,
+    );
+  }
+
+}
+
+
 class ListItem {}
 
 class HeadItem extends ListItem {
   String title;
-
   HeadItem(this.title);
 }
-
-class ColorItem extends ListItem {
+class ColorItem extends ListItem{
   String color;
-
   ColorItem(this.color);
 }
-
 class MessageItem extends ListItem {
   String message;
 
