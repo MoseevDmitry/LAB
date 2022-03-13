@@ -19,7 +19,7 @@ class Myla extends StatelessWidget {
               centerTitle: true,
               title: const Text(
                 "Добрый вечер",
-                style: TextStyle(fontSize: 32, fontFamily: 'Doom', color: Colors.black87),
+                style: TextStyle(fontSize: 32, fontFamily: 'Doom', color: Colors.yellowAccent),
                 textAlign: TextAlign.center,
               ),
 
@@ -41,8 +41,7 @@ class _MyBodyState extends State<MyBody> {
   Widget build(BuildContext context) {
     List<ListItem> items = [];
     for (int i = 0; i < 1000; i++) {
-      ListItem item;
-      if (i % 10 == 0) {
+      ListItem item;      if (i % 10 == 0) {
         item = HeadItem('$i');
       } else if (i % 5 == 0) {
         item = ColorItem('$i');
@@ -89,6 +88,10 @@ class MessageContainer extends StatelessWidget{
   MessageContainer(this.message);
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+          side: BorderSide( color: Colors.indigo, width: 1),
+          borderRadius: BorderRadius.all(Radius.circular(40))
+      ),
       child: Text(
         message,
         style: TextStyle(fontSize: 25, color: Colors.green),
